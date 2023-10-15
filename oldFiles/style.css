@@ -1,0 +1,54 @@
+/* Set the background color to black */
+body {background-color: black;}
+h1 {color: white;}
+
+    /* Styling the game board and cells here */
+
+/* Style the container for the smaller boards */
+.super-tic-tac-toe {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px; /* Adjust as needed */
+    margin: 20px auto; /* Center the grid */
+    width: 300px; /* Adjust as needed */
+    height: 300px; /* Adjust as needed */
+}
+
+  /*old board setup that drew it as one column, booooo!!!
+  /* Style the game board container */
+  /* .super-tic-tac-toe {
+    width: 900px; /* Adjust as needed */
+    /*margin: 0 auto;
+    padding: 20px;
+    border: 2px solid white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    text-align: center; /* Center the title */
+  /*} */
+  
+  /* Style the smaller Tic-Tac-Toe boards */
+  .board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px; /* Adjust as needed */
+    border: 2px solid white;
+    padding: 5px;
+  }
+  
+  .board > div {
+    background-color: transparent;
+    text-align: center;
+    font-size: 36px;
+    color: purple; /* Purple color for X's and O's */
+    width: 100px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+    line-height: 100px; /* Center the characters vertically */
+    border: 1px solid white;
+  }
+  
+  /* Style the game status information */
+  .status {
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+  }

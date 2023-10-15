@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Super Tic-Tac-Toe</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <h1>Super Tic-Tac-Toe</h1>
+  <div id="result" class="hidden">
+    <p id="winner-text">Player X wins!</p>
+    <button id="restart-button" onclick="restartGame()">Restart</button>
+  </div>
+  <!-- <div class="board" id="board">
+    <div class="cell" onclick="makeMove(0, 0)"></div>
+    <div class="cell" onclick="makeMove(0, 1)"></div>
+    <div class="cell" onclick="makeMove(0, 2)"></div>
+    <div class="cell" onclick="makeMove(1, 0)"></div>
+    <div class="cell" onclick="makeMove(1, 1)"></div>
+    <div class="cell" onclick="makeMove(1, 2)"></div>
+    <div class="cell" onclick="makeMove(2, 0)"></div>
+    <div class="cell" onclick="makeMove(2, 1)"></div>
+    <div class="cell" onclick="makeMove(2, 2)"></div>
+  </div> -->
+  <div class="superBoard" id="superBoard">
+    <div class="board" id="0">
+      <div class="cell" onclick="makeMove(0, 0)"></div>
+      <div class="cell" onclick="makeMove(0, 1)"></div>
+      <div class="cell" onclick="makeMove(0, 2)"></div>
+      <div class="cell" onclick="makeMove(1, 0)"></div>
+      <div class="cell" onclick="makeMove(1, 1)"></div>
+      <div class="cell" onclick="makeMove(1, 2)"></div>
+      <div class="cell" onclick="makeMove(2, 0)"></div>
+      <div class="cell" onclick="makeMove(2, 1)"></div>
+      <div class="cell" onclick="makeMove(2, 2)"></div>
+    </div>
+    <div class="board" id="1">
+      <div class="cell" onclick="makeMove(3, 3)"></div>
+      <div class="cell" onclick="makeMove(3, 4)"></div>
+      <div class="cell" onclick="makeMove(3, 5)"></div>
+      <div class="cell" onclick="makeMove(4, 3)"></div>
+      <div class="cell" onclick="makeMove(4, 4)"></div>
+      <div class="cell" onclick="makeMove(4, 5)"></div>
+      <div class="cell" onclick="makeMove(5, 3)"></div>
+      <div class="cell" onclick="makeMove(5, 4)"></div>
+      <div class="cell" onclick="makeMove(5, 5)"></div>
+    </div>
+    <div class="board" id="2">
+      <div class="cell" onclick="makeMove(6, 6)"></div>
+      <div class="cell" onclick="makeMove(6, 7)"></div>
+      <div class="cell" onclick="makeMove(6, 8)"></div>
+      <div class="cell" onclick="makeMove(7, 6)"></div>
+      <div class="cell" onclick="makeMove(7, 7)"></div>
+      <div class="cell" onclick="makeMove(7, 8)"></div>
+      <div class="cell" onclick="makeMove(8, 6)"></div>
+      <div class="cell" onclick="makeMove(8, 7)"></div>
+      <div class="cell" onclick="makeMove(8, 8)"></div>
+    </div>
+    <div class="board" id="3">
+      <div class="cell" onclick="makeMove(9, 9)"></div>
+      <div class="cell" onclick="makeMove(9, 10)"></div>
+      <div class="cell" onclick="makeMove(9, 11)"></div>
+      <div class="cell" onclick="makeMove(10, 9)"></div>
+      <div class="cell" onclick="makeMove(10, 10)"></div>
+      <div class="cell" onclick="makeMove(10, 11)"></div>
+      <div class="cell" onclick="makeMove(11, 9)"></div>
+      <div class="cell" onclick="makeMove(11, 10)"></div>
+      <div class="cell" onclick="makeMove(11, 11)"></div>
+    </div>
+    <div class="board" id="4">
+      <div class="cell" onclick="makeMove(12, 12)"></div>
+      <div class="cell" onclick="makeMove(12, 13)"></div>
+      <div class="cell" onclick="makeMove(12, 14)"></div>
+      <div class="cell" onclick="makeMove(13, 12)"></div>
+      <div class="cell" onclick="makeMove(13, 13)"></div>
+      <div class="cell" onclick="makeMove(13, 14)"></div>
+      <div class="cell" onclick="makeMove(14, 12)"></div>
+      <div class="cell" onclick="makeMove(14, 13)"></div>
+      <div class="cell" onclick="makeMove(14, 14)"></div>
+    </div>
+    <div class="board" id="5">
+      <div class="cell" onclick="makeMove(15, 15)"></div>
+      <div class="cell" onclick="makeMove(15, 16)"></div>
+      <div class="cell" onclick="makeMove(15, 17)"></div>
+      <div class="cell" onclick="makeMove(16, 15)"></div>
+      <div class="cell" onclick="makeMove(16, 16)"></div>
+      <div class="cell" onclick="makeMove(16, 17)"></div>
+      <div class="cell" onclick="makeMove(17, 15)"></div>
+      <div class="cell" onclick="makeMove(17, 16)"></div>
+      <div class="cell" onclick="makeMove(17, 17)"></div>
+    </div>
+    <div class="board" id="6">
+      <div class="cell" onclick="makeMove(18, 18)"></div>
+      <div class="cell" onclick="makeMove(18, 19)"></div>
+      <div class="cell" onclick="makeMove(18, 20)"></div>
+      <div class="cell" onclick="makeMove(19, 18)"></div>
+      <div class="cell" onclick="makeMove(19, 19)"></div>
+      <div class="cell" onclick="makeMove(19, 20)"></div>
+      <div class="cell" onclick="makeMove(20, 18)"></div>
+      <div class="cell" onclick="makeMove(20, 19)"></div>
+      <div class="cell" onclick="makeMove(20, 20)"></div>
+    </div>
+    <div class="board" id="7">
+      <div class="cell" onclick="makeMove(21, 21)"></div>
+      <div class="cell" onclick="makeMove(21, 22)"></div>
+      <div class="cell" onclick="makeMove(21, 23)"></div>
+      <div class="cell" onclick="makeMove(22, 21)"></div>
+      <div class="cell" onclick="makeMove(22, 22)"></div>
+      <div class="cell" onclick="makeMove(22, 23)"></div>
+      <div class="cell" onclick="makeMove(23, 21)"></div>
+      <div class="cell" onclick="makeMove(23, 22)"></div>
+      <div class="cell" onclick="makeMove(23, 23)"></div>
+    </div>
+    <div class="board" id="8">
+      <div class="cell" onclick="makeMove(24, 24)"></div>
+      <div class="cell" onclick="makeMove(24, 25)"></div>
+      <div class="cell" onclick="makeMove(24, 26)"></div>
+      <div class="cell" onclick="makeMove(25, 24)"></div>
+      <div class="cell" onclick="makeMove(25, 25)"></div>
+      <div class="cell" onclick="makeMove(25, 26)"></div>
+      <div class="cell" onclick="makeMove(26, 24)"></div>
+      <div class="cell" onclick="makeMove(26, 25)"></div>
+      <div class="cell" onclick="makeMove(26, 26)"></div>
+    </div>
+  </div>
+  <p id="status">Player X's turn</p>
+  <script src="script.js"></script>
+</body>
+</html>

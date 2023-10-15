@@ -1,0 +1,102 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #000; /* Black background */
+  color: #800080; /* Purple text color */
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #000; /* Black container background */
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  text-align: center;
+  color: #800080; /* Purple text color */
+}
+
+.board-row {
+  display: flex; /* Use flexbox to arrange boards in a row */
+  justify-content: space-around; /* Center boards horizontally in the row */
+  width: 500px;
+  height: 160px;
+  margin: 10px;
+  border: solid;
+  border-color: #800080;
+
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5px;
+  margin-top: 5px;
+}
+
+.overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 1);
+  justify-content: center;
+  align-items: center;
+  font-size: 48px; /* Adjust the font size as needed */
+  color: #000; /* Text color for the winning symbol */
+  z-index: 2;
+}
+
+.cell {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  background-color: #eeeeee8a;
+  cursor: pointer;
+  color: #800080; /* Purple text color */
+}
+
+.cell:hover {
+  background-color: #cccccc5b;
+}
+
+#status {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 20px;
+  color: #800080; /* Purple text color */
+}
+
+#result {
+  text-align: center;
+  font-size: 24px;
+  margin-top: 20px;
+  color: #800080; /* Purple text color */
+}
+
+.hidden {
+  display: none;
+}
+
+#restart-button {
+  background-color: #800080; /* Purple background color */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#restart-button:hover {
+  background-color: #9932CC; /* Darker purple on hover */
+}
