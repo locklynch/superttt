@@ -20,15 +20,19 @@ h1 {
   color: #800080; /* Purple text color */
 }
 
+.grid {
+  justify-content: center;
+  align-items: center;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
 .board-row {
   display: flex; /* Use flexbox to arrange boards in a row */
   justify-content: space-around; /* Center boards horizontally in the row */
   width: 500px;
   height: 160px;
-  margin: 10px;
-  border: solid;
-  border-color: #800080;
-
+  margin: -5px;
 }
 
 .board {
@@ -36,6 +40,8 @@ h1 {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 5px;
   margin-top: 5px;
+  border: solid;
+  border-color: #800080
 }
 
 .overlay {
@@ -55,7 +61,7 @@ h1 {
 
 .cell {
   width: 50px;
-  height: 50px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,6 +73,11 @@ h1 {
 
 .cell:hover {
   background-color: #cccccc5b;
+}
+
+/* Style for the last move cell */
+.cell.last-move-cell {
+  background-color: #f2f2f2; /* Light grey background color */
 }
 
 #status {
@@ -99,4 +110,9 @@ h1 {
 
 #restart-button:hover {
   background-color: #9932CC; /* Darker purple on hover */
+}
+
+#restart {
+  justify-content: center;
+  text-align: center;
 }
