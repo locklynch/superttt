@@ -3,6 +3,72 @@
 // [3], [4], [5]
 // [6], [7], [8]
 
+// Basic Function Descriptions
+
+// function makeMove() the main game sequence iteration, made of other functions
+  // if moveInCell() resolves, then do the following
+  // checkSmallWin, checkSmallDraw(), checkBigWin(), CheckBigDraw()
+  // updateLastMove()
+  // updateBoard()
+  // updateCurrentPlayer()
+  // declareWinner()
+  // otherwise, return invalid move
+
+// function isCellEmpty() check if gameBoard[index].cell[index] is empty
+
+// function openBoardForMove() only allow correct board to be used in next move (legal move)
+  // if gameWinner is null, then do the following
+  // if lastMove variable is null, then run isCellEmpty()
+  // check lastMove variable against gameBoard[index].winner
+    // if gameBoard[index].winner is Draw or player.symbol, then allow moves to any open gameBoard[index]
+    // if gameBoard[index].winner is null, then only allow moves to that gameBoard[index]
+  // if none of these are true, return false
+
+// function moveInCell(currentPlayer, gameBoard[index], cell[index]) make move on cell
+  // use openBoardForMove() to make sure move is legal
+    // if legal, then push move to current player.moves array as [gameBoard[index], cell[index]]
+    // and update gameBoard[index].cells[index] with player.symbol
+
+// function checkSmallWin() check if move results in gameBoard[index] win
+  // check second array elements of player.moves sub arrays that share the same gameBoard[index] as the current move against winPatterns
+    // if detected then update gameboard[index].winner with player.symbol, and push gameBoard[index] to player.boardWins array
+
+// function checkSmallDraw() check if move results in board draw
+  // check if gameBoard[index].cells is full and gameBoard[index].winner is null
+    // if so, update gameBoard[index].winner to Draw
+
+// function checkBigWin() check if checkSmallWin results in game win
+  // check player.boardWins array against winPatterns array
+    // if a big win is detected, then declare gameWinner to currentPlayer.name
+
+// function checkBigDraw() check if checkSmallDraw results in game draw
+  // check if all gameBoard.winner are player symbols, or Draw
+    // if so, then declare gameWinner as Draw
+
+// function declareWinner() check if gameWinner isn't null, and if it isn't null, display the winning player
+
+// function updateLastMove() update the lastMove variable with the cell[index] of the new move (which controls which board the next move can play on)
+
+// function updateBoard() update displayed game board with gameBoard state
+  // clear displayed game board of all player symbols
+  // display symbols based on player1.moves and player2.moves arrays
+  // if gameBoard[index].winner is a player.symbol, then change all cells to that symbol
+  // displayResult()
+
+// function displayResult() display current player's turn, and if gameWinner is not null, then display gameWinner
+
+// function updateCurrentPlayer() update currentPlayer variable with next player
+
+// function resetGame() reset the game
+  // reinitiate gameBoard and players as they were at start of game
+  // reinitialize currentPlayer as player 1
+  // reinitialize lastMove as null
+  // reinitialize lastFullMove as empty set
+  // reinitialize gameWinner as empty set
+  // clear the result display and show the turn status
+  // run updateBoard now that everything is reset
+
+
 const gameBoard = {
   0: { cells: ['', '', '', '', '', '', '', '', ''], winner: null },
   1: { cells: ['', '', '', '', '', '', '', '', ''], winner: null },
@@ -29,70 +95,6 @@ const gameBoard = {
   [0, 4, 8],
   [2, 4, 6]
 ];
-
-// Function Descriptions
-
-// function makeMove() the main game sequence iteration, made of other functions
-  // moveInCell()
-  // checkAllWinsDraws()
-  // updateLastMove()
-  // updateBoard()
-  // updateCurrentPlayer()
-
-// function isCellEmpty() check if gameBoard[index].cell[index] is empty
-
-// function openBoardForMove() only allow correct board to be used in next move (legal move)
-  // if lastMove variable is null, allow any move
-  // check lastMove variable against gameBoard[index].winner
-    // if gameBoard[index].winner is null, then only allow moves to that gameBoard[index]
-    // if gameBoard[index].winner is Draw or player.symbol, then allow moves to any open gameBoard[index]
-
-// function moveInCell(currentPlayer, gameBoard[index], cell[index]) make move on cell
-  // use openBoardForMove() and isCellEmpty() to make sure move is legal
-    // if legal, then push move to current player.moves array as [gameBoard[index], cell[index]]
-    // and update gameBoard[index].cells[index] with player.symbol
-    // if not legal, then do not allow move
-
-// function checkSmallWin() check if move results in gameBoard[index] win
-  // check second array elements of player.moves sub arrays that share the same gameBoard[index] as the current move against winPatterns
-    // if detected then update gameboard[index].winner with player.symbol, and push gameBoard[index] to player.boardWins array and move on
-    // if not then just move on
-
-// function checkSmallDraw() check if move results in board draw
-  // check if gameBoard[index].cells is full and gameBoard[index].winner is null
-    // if so, update gameBoard[index].winner to Draw and move on
-    // if not, then just move on
-
-// function checkBigWin() check if checkSmallWin results in game win
-  // check player.boardWins array against winPatterns array
-    // if a big win is detected, then declare gameWinner to currentPlayer.name
-    // if not, then move on
-
-// function checkBigDraw() check if checkSmallDraw results in game draw
-  // check if all gameBoard.winner are player symbols, or Draw
-    // if so, then declare gameWinner as Draw
-    // if not, then move on
-
-// function updateLastMove() update the lastMove variable with the cell[index] of the new move (which controls which board the next move can play on)
-
-// function displayResult() display current player's turn, and if gameWinner is not null, then display gameWinner
-
-// function updateBoard() update displayed game board with gameBoard state
-  // clear displayed game board of all player symbols
-  // display symbols based on player1.moves and player2.moves arrays
-  // if gameBoard[index].winner is a player.symbol, then change all cells to that symbol
-  // if game is won, change all cells in all boards to player.symbol
-  // displayResult()
-
-// function updateCurrentPlayer() update currentPlayer variable with next player
-
-// function resetGame() reset the game
-  // reinitiate gameBoard and players as empty objects
-  // reinitialize currentPlayer as player 1
-  // reinitialize lastMove as null
-  // run updateBoard now that everything is reset
-  // displayResult()
-
 
 // player object constructor
 function Player(name, symbol) {
@@ -135,8 +137,6 @@ function makeMove(boardIndex, cellIndex) {
   updateLastMove(boardIndex, cellIndex);
   updateBoard();
   updateCurrentPlayer(boardIndex, cellIndex);
-  // console.log(currentPlayer)
-  // console.log(gameBoard)
   console.log(gameWinner)
   console.log(lastFullMove)
   declareWinner()
@@ -154,7 +154,6 @@ function openBoardForMove(boardIndex, cellIndex) {
   // If lastMove is null, and the cell is empty, allow the move
   if (gameWinner === null) {
     if (lastMove === null) {
-      // console.log(isCellEmpty(boardIndex, cellIndex))
       return isCellEmpty(boardIndex, cellIndex)
     // if lastMove referes to a board's boardIndex that's drawn or won, and the cell to be moved on is empty allow the move
     } else if (gameBoard[lastMove].winner !== null) {
@@ -319,46 +318,6 @@ function displayResult(result) {
   resultDiv.classList.remove('hidden');
 }
 
-// // Function to update the visual board and the gameBoard
-// function updateBoard() {
-//   const cells = document.querySelectorAll('.cell');
-
-//   // Clear the board by removing text content from all cells
-//   cells.forEach(cell => {
-//     cell.textContent = '';
-//     cell.classList.remove('last-move-cell');
-//   });
-
-//   // Iterate through all boards
-//   for (let boardIndex = 0; boardIndex < 9; boardIndex++) {
-//     const board = gameBoard[boardIndex];
-
-//   // If a winner is declared for this board, display the winner's symbol only on that board
-//     if (board.winner !== null && board.winner !== 'Draw') {
-//       // Iterate through the cells and set the winner's symbol in each cell
-//       board.cells.forEach((cell, cellIndex) => {
-//         const displayCell = cells[boardIndex * 9 + cellIndex];
-//         displayCell.textContent = board.winner;
-//       });
-//     } else {
-//       // Otherwise, update the board with player moves
-//       player1.moves.forEach(move => {
-//         if (move.boardIndex === boardIndex) {
-//           const cellIndex = move.cellIndex;
-//           cells[boardIndex * 9 + cellIndex].textContent = player1.symbol;
-//         }
-//       });
-
-//       player2.moves.forEach(move => {
-//         if (move.boardIndex === boardIndex) {
-//           const cellIndex = move.cellIndex;
-//           cells[boardIndex * 9 + cellIndex].textContent = player2.symbol;
-//         }
-//       });
-//     }
-//   }
-// }
-
 // function to change to next player
 function updateCurrentPlayer(boardIndex, cellIndex) {
   currentPlayer = (currentPlayer === player1) ? player2 : player1;
@@ -386,7 +345,6 @@ function resetGame() {
   const statusText = document.getElementById('status');
   const restartButton = document.getElementById('restart-button');
   statusText.style.display = 'block'; // Show the turn status
-  // resultDiv.classList.add('hidden');
   resultDiv.style.display = 'none'
 
   // Update the visual board
