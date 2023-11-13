@@ -49,10 +49,15 @@
 
 // function updateLastMove() update the lastMove variable with the cell[index] of the new move (which controls which board the next move can play on)
 
+// function legalNextMoves() highlight the next moves that can be made
+  // if lastMove variable === board index with winner value of null, highlight the cells on that board
+  // if lastMove variable === board index with winner value of not null, highlight all empty cells on boards who's winner values are null
+
 // function updateBoard() update displayed game board with gameBoard state
   // clear displayed game board of all player symbols
   // display symbols based on player1.moves and player2.moves arrays
   // if gameBoard[index].winner is a player.symbol, then change all cells to that symbol
+  // legalNextMoves()
   // displayResult()
 
 // function displayResult() display current player's turn, and if gameWinner is not null, then display gameWinner
@@ -235,6 +240,29 @@ function updateLastMove(boardIndex, cellIndex) {
   lastFullMove = [boardIndex, cellIndex];
 }
 
+// function to highlight next legal moves
+function legalNextMoves () {
+  const cells = document.querySelectorAll('.cell');
+
+  if (lastMove !== null && gameBoard[lastMove].winner === null) {
+    gameBoard[lastMove].cells.forEach((cell, index) => {
+      if (cell === '') {
+        cells[lastMove * 9 + index].classList.add('last-move-cell')
+      }
+    });
+  } else {
+    for (let boardIndex = 0; boardIndex < 9; boardIndex++) {
+      if (gameBoard[boardIndex].winner === null) {
+        gameBoard[boardIndex].cells.forEach((cell, index) => {
+          if (cell === '') {
+            cells[boardIndex * 9 + index].classList.add('last-move-cell');
+          }
+        });
+      }
+    }
+  }
+}
+
 // Function to update the visual board and the gameBoard
 function updateBoard() {
   const cells = document.querySelectorAll('.cell');
@@ -296,6 +324,9 @@ function updateBoard() {
       });
     }
   }
+
+  legalNextMoves();
+
 }
 
   
